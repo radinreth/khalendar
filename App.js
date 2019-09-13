@@ -9,14 +9,9 @@
 import React, {Fragment} from 'react';
 import {
   SafeAreaView,
-  StyleSheet,
   StatusBar,
 } from 'react-native';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars'
-
-import {
-  Colors,
-} from 'react-native/Libraries/NewAppScreen';
 
 const App = () => {
   return (
