@@ -12,6 +12,7 @@ import {
   StatusBar,
 } from 'react-native';
 import {Calendar, LocaleConfig, CalendarList, Agenda} from 'react-native-calendars'
+import moment from 'moment'
 
 LocaleConfig.locales['km'] = {
   monthNames: ['មករា','កុម្ភៈ','មិនា','មេសា','ឧសភា','មិថុនា','កក្កដា','សីហា','កញ្ញា','តុលា','វិច្ឆិកា','ធ្នូ'],
@@ -23,6 +24,8 @@ LocaleConfig.locales['km'] = {
 LocaleConfig.defaultLocale = 'km';
 
 const App = () => {
+  const currentDate = moment().format("Y-MM-D")
+
   return (
     <Fragment>
       <StatusBar barStyle="dark-content" />
@@ -32,6 +35,9 @@ const App = () => {
           horizontal={true}
           // Enable paging on horizontal, default = false
           pagingEnabled={true}
+          markedDates={{
+            [currentDate]: {selected: true, marked: true},
+          }}
         />
       </SafeAreaView>
     </Fragment>
