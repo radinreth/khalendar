@@ -27,7 +27,12 @@ const App = () => {
     <Fragment>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
-        <Calendar />
+        <CalendarList
+          // Enable horizontal scrolling, default = false
+          horizontal={true}
+          // Enable paging on horizontal, default = false
+          pagingEnabled={true}
+        />
       </SafeAreaView>
     </Fragment>
   );
