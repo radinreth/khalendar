@@ -5,12 +5,16 @@ import {
   Alert,
   StyleSheet,
   View,
-  Text,
+  // Text,
   SafeAreaView,
   TouchableOpacity,
-  Button
+  Button,
+  YellowBox
 } from 'react-native';
 import {ExpandableCalendar, AgendaList, CalendarProvider, LocaleConfig} from 'react-native-calendars';
+import { Text } from 'react-native-elements'
+
+YellowBox.ignoreWarnings(['Warning: componentWillReceiveProps']);
 
 LocaleConfig.locales['km'] = {
   monthNames: ['មករា','កុម្ភៈ','មិនា','មេសា','ឧសភា','មិថុនា','កក្កដា','សីហា','កញ្ញា','តុលា','វិច្ឆិកា','ធ្នូ'],
@@ -190,8 +194,8 @@ export default class App extends Component {
             renderItem={this.renderItem}
             // sectionStyle={styles.section}
           /> */}
-          <View>
-            <Text>Public holiday</Text>
+          <View style={{ margin:10 }}>
+            <Text style={{fontSize: 18, fontWeight: 'bold'}}>Public holiday</Text>
           </View>
           </SafeAreaView>
         </CalendarProvider>
