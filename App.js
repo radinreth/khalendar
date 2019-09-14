@@ -10,8 +10,16 @@ import {
   TouchableOpacity,
   Button
 } from 'react-native';
-import {ExpandableCalendar, AgendaList, CalendarProvider} from 'react-native-calendars';
+import {ExpandableCalendar, AgendaList, CalendarProvider, LocaleConfig} from 'react-native-calendars';
 
+LocaleConfig.locales['km'] = {
+  monthNames: ['មករា','កុម្ភៈ','មិនា','មេសា','ឧសភា','មិថុនា','កក្កដា','សីហា','កញ្ញា','តុលា','វិច្ឆិកា','ធ្នូ'],
+  monthNamesShort: ['មករា','កុម្ភៈ','មិនា','មេសា','ឧសភា','មិថុនា','កក្កដា','សីហា','កញ្ញា','តុលា','វិច្ឆិកា','ធ្នូ'],
+  dayNames: ['អាទិត្យ','ចន្ទ','អង្គារ','ពុធ','ព្រហស្បតិ៍','សុក្រ','សៅរ៍'],
+  dayNamesShort: ['អា','ច','អ','ព','ព្រ','សុ','ស'],
+  today: 'ថ្ងៃនេះ'
+};
+// LocaleConfig.defaultLocale = 'km';
 
 const today = new Date().toISOString().split('T')[0];
 const fastDate = getPastDate(3); 
@@ -176,12 +184,15 @@ export default class App extends Component {
             // calendarStyle={styles.calendar}
             // headerStyle={styles.calendar} // for horizontal only
           />
-          <AgendaList
+          {/* <AgendaList
             sections={ITEMS}
             extraData={this.state}
             renderItem={this.renderItem}
             // sectionStyle={styles.section}
-          />
+          /> */}
+          <View>
+            <Text>Public holiday</Text>
+          </View>
           </SafeAreaView>
         </CalendarProvider>
     );
