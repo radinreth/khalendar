@@ -19,7 +19,7 @@ YellowBox.ignoreWarnings(['Warning: componentWillReceiveProps']);
 LocaleConfig.locales['km'] = {
   monthNames: ['មករា','កុម្ភៈ','មិនា','មេសា','ឧសភា','មិថុនា','កក្កដា','សីហា','កញ្ញា','តុលា','វិច្ឆិកា','ធ្នូ'],
   monthNamesShort: ['មករា','កុម្ភៈ','មិនា','មេសា','ឧសភា','មិថុនា','កក្កដា','សីហា','កញ្ញា','តុលា','វិច្ឆិកា','ធ្នូ'],
-  dayNames: ['អាទិត្យ','ចន្ទ','អង្គារ','ពុធ','ព្រហស្បតិ៍','សុក្រ','សៅរ៍'],
+  dayNames: ['អាទិត្យ','ចន័្ទ','អង្គារ','ពុធ','ព្រហស្បតិ៍','សុក្រ','សៅរ៏'],
   dayNamesShort: ['អា','ច','អ','ព','ព្រ','សុ','ស'],
   today: 'ថ្ងៃនេះ'
 };
@@ -60,12 +60,13 @@ const ITEMS = [
 
 export default class App extends Component {
 
-  onDateChanged = (/* date, updateSource */) => {
+  onDateChanged = ( date, updateSource ) => {
+    // Alert.alert(date)
     // console.warn('ExpandableCalendarScreen onDateChanged: ', date, updateSource);
     // fetch and set data for date + week ahead
   }
 
-  onMonthChange = (/* month, updateSource */) => {
+  onMonthChange = (month, updateSource) => {
     // console.warn('ExpandableCalendarScreen onMonthChange: ', month, updateSource);
   }
   
@@ -161,11 +162,12 @@ export default class App extends Component {
     };
   }
 
-  render() {    
+  render() {  
+    // Alert.alert( JSON.stringify(today) )  
     return (
       
         <CalendarProvider 
-          date={ITEMS[0].title} 
+          date={today} // ITEMS[0].title 
           onDateChanged={this.onDateChanged} 
           onMonthChange={this.onMonthChange}
           theme={{todayButtonTextColor: '#0059ff'}} 
@@ -180,7 +182,8 @@ export default class App extends Component {
             // disablePan
             // hideKnob
             // initialPosition={ExpandableCalendar.positions.OPEN}
-            firstDay={1}
+            hideDayNames={false}
+            showWeekNumbers={false}
             markedDates={this.getMarkedDates()} // {'2019-06-01': {marked: true}, '2019-06-02': {marked: true}, '2019-06-03': {marked: true}};
             theme={this.getTheme()}
             leftArrowImageSource={require('./src/img/previous.png')}
