@@ -62,13 +62,23 @@ function getPastDate(days) {
 
 export default class App extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      curMonth: null
+    }
+  }
+
   onDateChanged = ( date, updateSource ) => {
     // Alert.alert(date)
     // console.warn('ExpandableCalendarScreen onDateChanged: ', date, updateSource);
     // fetch and set data for date + week ahead
   }
 
-  onMonthChange = (month, updateSource) => {
+  onMonthChange = (calendar, updateSource) => {
+    this.setState({
+      curMonth: calendar.month
+    })
     // console.warn('ExpandableCalendarScreen onMonthChange: ', month, updateSource);
   }
   
@@ -165,12 +175,14 @@ export default class App extends Component {
     };
   }
 
+  componentWillMount() {
+    this.setState({
+      curMonth: moment(today).month() + 1 // 0-base, need to +1
+    })
+  }
+
   render() {  
-    // Alert.alert( JSON.stringify(today) )  
-    console.log('moment', moment().month(), holidays)
-    let month = moment().month() + 1 // 0-base
     return (
-      
         <CalendarProvider 
           date={today} // ITEMS[0].title 
           onDateChanged={this.onDateChanged} 
@@ -205,7 +217,7 @@ export default class App extends Component {
           <View style={{ margin:10 }}>
             <Text style={{fontSize: 18, fontWeight: 'bold'}}>Public holiday</Text>
             {
-              holidays[month].map((h,k) => <Text key={k}>{h.day} - {h.title}</Text>)
+              holidays[this.state.curMonth] && holidays[this.state.curMonth].map((h,k) => <Text key={k}>{h.day} - {h.title}</Text>)
             }
           </View>
           </SafeAreaView>
